@@ -40,9 +40,36 @@
 # My Code
 
 ```javascript
+function solution(A) {
+    // get total sum of A
+    let totalSum = A.reduce((x, y) => x + y);
 
+    // initialize current sum & minimal sum
+    let curSum = 0;
+    let minSum = 0;
+
+    for(let i=0;i<A.length - 1;i++) {
+        // update current sum
+        curSum += A[i];
+
+        // initialize : minimal sum
+        if(i == 0) {
+            minSum = Math.abs(2 * curSum - totalSum)
+        }
+        else {
+            // get diff between left sum and right sum
+            let difference = Math.abs(2 * curSum - totalSum)
+
+            // update minimal sum
+            minSum = Math.min(minSum, difference)
+        }
+    }
+
+    return minSum;
+}
 ```
 
 <br>
 
 # Result
+<img width="833" alt="image" src="https://user-images.githubusercontent.com/74173976/208084820-49f2d7e0-6371-495c-a03a-386d308ada01.png">
