@@ -51,9 +51,68 @@
 # My Code
 
 ```javascript
+function solution(N, A) {
+    // N : num(counters)
+    // A : operations
+
+    // Initialize : max values
+    let prevMaxValue = 0;
+    let curMaxValue = 0;
+
+    // Initialize : counters
+    let counters = [];
+    for(let i=0;i<=N;i++) {
+        counters[i] = 0;
+    }
+
+    let changedIndex = []
+
+    for(let i=0;i<A.length;i++) {
+
+        // increase
+        if(A[i] <= N) {
+            // update : A
+            counters[A[i]] += 1;
+
+            // update : changed index array
+            changedIndex[changedIndex.length] = A[i]
+
+            // update : current max value
+            if(curMaxValue < counters[A[i]] + prevMaxValue) {
+                curMaxValue = counters[A[i]] + prevMaxValue
+            }
+        }
+        // max counter
+        else {
+            // update : previous max value to be current max value
+            prevMaxValue = curMaxValue;            
+
+            // initialize : value of counters to be 0 whose index included in maxIndex
+            for(let i=0;i<changedIndex.length;i++) {
+                counters[changedIndex[i]] = 0;
+            }
+
+            // initialize : changed index array
+            changedIndex = []
+        }
+    }
+
+    // apply max counter operation to counters
+    for(let i=1;i<=N;i++) {
+        if(counters[i] <= prevMaxValue) {
+            counters[i] += prevMaxValue;
+        }
+    }
+
+    // delete : 0th element
+    counters.shift();
+
+    return counters;
+}
 
 ```
 
 <br>
 
 # Result
+<img width="869" alt="image" src="https://user-images.githubusercontent.com/74173976/208227377-e70cccb9-4b1d-4085-9ee2-ddcf8112dbf7.png">
