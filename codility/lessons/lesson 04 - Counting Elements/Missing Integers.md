@@ -22,9 +22,29 @@
 # My Code
 
 ```javascript
+function solution(A) {
+    // initialize : count array
+    let counts = new Array(100001).fill(false);
 
+    // update : counts array
+    for(let i=0;i<A.length;i++) {
+        if(A[i] > 0 && counts[A[i]] == false) {
+            counts[A[i]] = true
+        }
+    }
+
+    // find false
+    for(let i=1;i<=100000;i++) {
+        if(counts[i] == false) {
+            return i;
+        }
+    }
+
+    return 100001;
+}
 ```
 
 <br>
 
 # Result
+<img width="848" alt="image" src="https://user-images.githubusercontent.com/74173976/208294849-833d8d78-abac-41f1-bca2-723a50c7a7f1.png">
