@@ -41,45 +41,50 @@ function solution(S, P, Q) {
     // S : given DNA sequence
     // P, Q : query for find minimal impact factor
 
+    // declare : list that records last indexes for A, C, G, T
+    let indexList = []
+
+    // declare : previous index info before S[i]
+    // order - A, C, G, T
+    let prevIndex = [-1, -1, -1, -1]
+
+    for(let i=0;i<S.length;i++) {
+        // update : prevIndex
+        if(S[i] == 'A') {
+            prevIndex[0] = i;
+        }
+        else if(S[i] == 'C') {
+            prevIndex[1] = i;
+        }
+        else if(S[i] == 'G') {
+            prevIndex[2] = i;
+        }
+        else {
+            prevIndex[3] = i;
+        }
+
+        // add : push previous index to index list
+        indexList[indexList.length] = prevIndex.slice()
+    }
 
     // declare : list that will be returned
     let factorList = []
 
     for(let i=0;i<P.length;i++) {
-        // declare : search interval
+        // declare : interval for searching
         let begin = P[i];
         let end = Q[i];
 
-        // initialize : minimal factor between begin and and
-        let minimalFactor = S[begin];
+        // search index list
+        for(let j=0;j<4;j++) {
+            // if j th element is found between begin and end
+            if(begin <= indexList[end][j] && indexList[end][j] <= end) {
+                // add : push j+1 to factor list
+                factorList.push(j+1);
 
-        // if minimal factor is the lowest impact factor
-        if(minimalFactor == 'A') {
-            // add : push to factor list & continue
-            factorList.push(1)
-            continue;
-        }
-
-        // search for updating minimal factor
-        for(let j=begin+1;j<=end;j++) {
-            // update : minimal factor
-            if(minimalFactor > S[j]) {
-                minimalFactor = S[j];
+                // break : stop searching
+                break;
             }
-        }
-        
-        // add : push to factor list
-        if(minimalFactor == 'A') {
-            factorList.push(1);
-        }
-        else if(minimalFactor == 'C') {
-            factorList.push(2);
-        }
-        else if(minimalFactor == 'G') {
-            factorList.push(3);
-        }
-        else {
-            factorList.push(4);
         }
     }
 
@@ -91,4 +96,7 @@ function solution(S, P, Q) {
 <br>
 
 # Result
-<img width="876" alt="image" src="https://user-images.githubusercontent.com/74173976/208855414-8bd233d7-c3b6-46dd-8ddf-477641b92e58.png">
+<img width="858" alt="image" src="https://user-images.githubusercontent.com/74173976/208873883-661b3528-0371-48ec-92d4-36210899ec93.png">
+
+# Notice
+when array is copied in JS, I have to consider whether to perform deep copy or shallow copy
