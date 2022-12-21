@@ -37,9 +37,58 @@
 # My Code
 
 ```javascript
+function solution(S, P, Q) {
+    // S : given DNA sequence
+    // P, Q : query for find minimal impact factor
+
+
+    // declare : list that will be returned
+    let factorList = []
+
+    for(let i=0;i<P.length;i++) {
+        // declare : search interval
+        let begin = P[i];
+        let end = Q[i];
+
+        // initialize : minimal factor between begin and and
+        let minimalFactor = S[begin];
+
+        // if minimal factor is the lowest impact factor
+        if(minimalFactor == 'A') {
+            // add : push to factor list & continue
+            factorList.push(1)
+            continue;
+        }
+
+        // search for updating minimal factor
+        for(let j=begin+1;j<=end;j++) {
+            // update : minimal factor
+            if(minimalFactor > S[j]) {
+                minimalFactor = S[j];
+            }
+        }
+        
+        // add : push to factor list
+        if(minimalFactor == 'A') {
+            factorList.push(1);
+        }
+        else if(minimalFactor == 'C') {
+            factorList.push(2);
+        }
+        else if(minimalFactor == 'G') {
+            factorList.push(3);
+        }
+        else {
+            factorList.push(4);
+        }
+    }
+
+    return factorList;
+}
 
 ```
 
 <br>
 
 # Result
+<img width="876" alt="image" src="https://user-images.githubusercontent.com/74173976/208855414-8bd233d7-c3b6-46dd-8ddf-477641b92e58.png">
