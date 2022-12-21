@@ -6,8 +6,12 @@
 
 <br>
 
-##### A DNA sequence can be represented as a string consisting of the letters A, C, G and T, which correspond to the types of successive nucleotides in the sequence. Each nucleotide has an impact factor, which is an integer. Nucleotides of types A, C, G and T have impact factors of 1, 2, 3 and 4, respectively. You are going to answer several queries of the form: What is the minimal impact factor of nucleotides contained in a particular part of the given DNA sequence?
-##### The DNA sequence is given as a non-empty string S = S[0]S[1]...S[N-1] consisting of N characters. There are M queries, which are given in non-empty arrays P and Q, each consisting of M integers. The K-th query (0 ≤ K < M) requires you to find the minimal impact factor of nucleotides contained in the DNA sequence between positions P[K] and Q[K] (inclusive).
+##### A DNA sequence can be represented as a string consisting of the letters A, C, G and T, which correspond to the types of successive nucleotides in the sequence. 
+##### Each nucleotide has an impact factor, which is an integer. Nucleotides of types A, C, G and T have impact factors of 1, 2, 3 and 4, respectively. 
+##### You are going to answer several queries of the form: What is the minimal impact factor of nucleotides contained in a particular part of the given DNA sequence?
+##### The DNA sequence is given as a non-empty string S = S[0]S[1]...S[N-1] consisting of N characters. 
+##### There are M queries, which are given in non-empty arrays P and Q, each consisting of M integers. 
+##### The K-th query (0 ≤ K < M) requires you to find the minimal impact factor of nucleotides contained in the DNA sequence between positions P[K] and Q[K] (inclusive).
 ##### For example, consider string S = CAGCCTA and arrays P, Q such that:
     P[0] = 2    Q[0] = 4
     P[1] = 5    Q[1] = 5
@@ -99,4 +103,4 @@ function solution(S, P, Q) {
 <img width="858" alt="image" src="https://user-images.githubusercontent.com/74173976/208873883-661b3528-0371-48ec-92d4-36210899ec93.png">
 
 # Notice
-when array is copied in JS, I have to consider whether to perform deep copy or shallow copy
+##### when array is copied in JS, I have to consider whether to perform deep copy or shallow copy
