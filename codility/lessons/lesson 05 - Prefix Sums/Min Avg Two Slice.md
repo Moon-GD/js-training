@@ -41,9 +41,22 @@
 # My Code
 
 ```javascript
+function solution(A) {
+    let minimalIndex = 0;
+    let minimalAVG = (A[0] + A[1]) / 2;
 
+    for(let i=1;i<A.length-1;i++) {
+        if((A[i] + A[i+1]) / 2 < minimalAVG) {
+            minimalAVG = (A[i] + A[i+1]) / 2;
+            minimalIndex = i;
+        }
+    }
+
+    return minimalIndex;
+}
 ```
 
 <br>
 
 # Result
+<img width="847" alt="image" src="https://user-images.githubusercontent.com/74173976/209076414-a90628bd-05ca-495d-a4ec-d83ed2962abc.png">
