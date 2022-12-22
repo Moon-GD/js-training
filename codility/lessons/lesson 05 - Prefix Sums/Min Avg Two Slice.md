@@ -59,4 +59,4 @@ function solution(A) {
 <br>
 
 # Result
-<img width="847" alt="image" src="https://user-images.githubusercontent.com/74173976/209076414-a90628bd-05ca-495d-a4ec-d83ed2962abc.png">
+<img width="848" alt="image" src="https://user-images.githubusercontent.com/74173976/209083986-8451de2b-f407-44fd-b982-376ced993779.png">
