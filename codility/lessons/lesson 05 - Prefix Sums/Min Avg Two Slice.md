@@ -42,13 +42,32 @@
 
 ```javascript
 function solution(A) {
+    // declare : minimal index & AVG
     let minimalIndex = 0;
     let minimalAVG = (A[0] + A[1]) / 2;
 
-    for(let i=1;i<A.length-1;i++) {
-        if((A[i] + A[i+1]) / 2 < minimalAVG) {
-            minimalAVG = (A[i] + A[i+1]) / 2;
-            minimalIndex = i;
+    // declare : sum of two elements and three elements, respectively
+    let doubleSum = 0;
+    let tripleSum = 0;
+
+    for(let i=0;i<A.length;i++) {
+        // update : check double average of A[i], A[i+1]
+        if(i + 1 < A.length) {
+            doubleSum = A[i] + A[i+1];
+            if(doubleSum / 2 < minimalAVG) {
+                minimalAVG = doubleSum / 2;
+                minimalIndex = i;
+            }
+        }
+
+        // update : check triple average of A[i], A[i+1], A[i+2]
+        if(i + 2 < A.length) {
+            tripleSum = A[i] + A[i+1] + A[i+2];
+
+            if(tripleSum / 3 < minimalAVG) {
+                minimalAVG = tripleSum / 3;
+                minimalIndex = i;
+            }
         }
     }
 
@@ -59,4 +78,4 @@ function solution(A) {
 <br>
 
 # Result
-<img width="848" alt="image" src="https://user-images.githubusercontent.com/74173976/209083986-8451de2b-f407-44fd-b982-376ced993779.png">
+<img width="844" alt="image" src="https://user-images.githubusercontent.com/74173976/209086735-f966d10e-66b9-4a69-a938-c0e0fb61f6fa.png">
