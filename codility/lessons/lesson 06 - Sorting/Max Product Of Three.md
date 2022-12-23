@@ -39,9 +39,27 @@
 # My Code
 
 ```javascript
+function solution(A) {
+    // A : given array
+    
+    // sort : A by ascending order
+    A.sort()
 
+    // initialize : calcuate product of most left elements and most right elements
+    let leftProduct = A[0] * A[1] * A[2];
+    let rightProduct = A[A.length - 3] * A[A.length - 2] * A[A.length - 1]
+
+    // return : Max(leftProduct, rightProduct)
+    if(leftProduct >= rightProduct) {
+        return leftProduct;
+    }
+    else {
+        return rightProduct;
+    }
+}
 ```
 
 <br>
 
 # Result
+<img width="815" alt="image" src="https://user-images.githubusercontent.com/74173976/209285326-1dc5b188-3a00-48e0-90ab-a476c907c88f.png">
