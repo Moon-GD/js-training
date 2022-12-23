@@ -22,9 +22,33 @@
 # My Code
 
 ```javascript
+function solution(A) {
+    // declare : array that checks each element in A
+    let checkArray = new Array(2000001);
 
+    // declare : a variable that will be returned
+    let count = 0;
+
+    for(let i=0;i<A.length;i++) {
+        // continue : if A[i] was visited
+        if(checkArray[A[i] + 1000000]) {
+            continue;
+        }
+        // if A[i] is new element
+        else {
+            // update : check array of A[i]
+            checkArray[A[i] + 1000000] = true;
+
+            // update : +1 to count
+            count += 1;
+        }
+    }
+
+    return count;
+}
 ```
 
 <br>
 
 # Result
+<img width="858" alt="image" src="https://user-images.githubusercontent.com/74173976/209284450-b0162e08-586e-4cec-b129-d2975009b025.png">
