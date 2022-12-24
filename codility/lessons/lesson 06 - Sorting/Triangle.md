@@ -33,9 +33,23 @@
 # My Code
 
 ```javascript
+function solution(A) {
+    // sort : sort A by ascending
+    A.sort((a, b) => {return a - b;})
 
+    for(let i=0;i<A.length-3;i++) {
+        // return 1 : if tuplet is found
+        if(A[i] + A[i + 1] > A[i + 2]) {
+            return 1;
+        }
+    }
+
+    // return 0 : if no tuplet is found
+    return 0;
+}
 ```
 
 <br>
 
 # Result
+<img width="825" alt="image" src="https://user-images.githubusercontent.com/74173976/209441075-328f2735-f62f-4202-b6f4-27fd4b58098c.png">
