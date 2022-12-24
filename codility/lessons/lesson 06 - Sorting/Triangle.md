@@ -34,22 +34,40 @@
 
 ```javascript
 function solution(A) {
-    // sort : sort A by ascending
-    A.sort((a, b) => {return a - b;})
+    // return 0 : if A has less than 3 elements
+    if(A.length < 3) {
+        return 0;
+    }
+    // if A has more than 3 elements
+    else {
+        // sort A by ascending order
+        A.sort((a, b) => {return a - b;})
 
-    for(let i=0;i<A.length-3;i++) {
-        // return 1 : if tuplet is found
-        if(A[i] + A[i + 1] > A[i + 2]) {
+        // itertate to find tuplet
+        for(let i=0;i<A.length-2;i++) {
+            if(A[i] + A[i + 1] <= A[i + 2]) {
+                continue;
+            }
+
+            if(A[i + 1] + A[i + 2] <= A[i]) {
+                continue;
+            }
+
+            if(A[i + 2] + A[i] <= A[i + 1]) {
+                continue;
+            }
+
+            // return 1 : if all exceptions can not be applied
             return 1;
         }
-    }
 
-    // return 0 : if no tuplet is found
-    return 0;
+        // return 0 : if there exists no tuplet
+        return 0;
+    }
 }
 ```
 
 <br>
 
 # Result
-<img width="825" alt="image" src="https://user-images.githubusercontent.com/74173976/209441075-328f2735-f62f-4202-b6f4-27fd4b58098c.png">
+<img width="839" alt="image" src="https://user-images.githubusercontent.com/74173976/209441767-04f47997-403a-4c6a-a990-f71128e259fc.png">
