@@ -31,9 +31,36 @@
 # My Code
 
 ```javascript
+function solution(A) {
+    // declare : array that records circle info
+    let circleInfo = []
+
+    for(let i=0;i<A.length;i++) {
+        // update : circle info
+        // first param : maximum range to the right end of i th circle
+        // second param : minimal range to the left end of i th circle
+        circleInfo[i] = [i + A[i], i - A[i]];
+    }
+
+    // declare : a variable that will be returned
+    let count = 0;
+
+    for(let i=0;i<A.length;i++) {
+        for(let j=i+1;j<A.length;j++) {
+            // if i th circle can intersect j th circle
+            if(circleInfo[i][0] >= circleInfo[j][1]) {
+                // update : circle
+                count += 1;
+            }
+        }
+    }
+
+    return count;
+}
 
 ```
 
 <br>
 
 # Result
+<img width="830" alt="image" src="https://user-images.githubusercontent.com/74173976/209611983-2fd8690b-e1d3-4812-9ad7-42b20695a464.png">
