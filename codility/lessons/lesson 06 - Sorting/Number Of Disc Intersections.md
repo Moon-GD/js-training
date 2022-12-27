@@ -32,35 +32,48 @@
 
 ```javascript
 function solution(A) {
-    // declare : array that records circle info
-    let circleInfo = []
+    // declare : array that records lower & upper bound of i-th circle of A
+    let circleInfo = [];
 
     for(let i=0;i<A.length;i++) {
-        // update : circle info
-        // first param : maximum range to the right end of i th circle
-        // second param : minimal range to the left end of i th circle
-        circleInfo[i] = [i + A[i], i - A[i]];
+        // initialize : array of circle info
+        circleInfo[i] = [i - A[i], i + A[i]];
     }
+
+    // sort using lower bound
+    circleInfo.sort((a, b) => {
+        return a[0] - b[0];
+    })
 
     // declare : a variable that will be returned
     let count = 0;
 
     for(let i=0;i<A.length;i++) {
+        let upperBound = circleInfo[i][1];
+
         for(let j=i+1;j<A.length;j++) {
-            // if i th circle can intersect j th circle
-            if(circleInfo[i][0] >= circleInfo[j][1]) {
-                // update : circle
+            // if i-th circle intersects j-th circle
+            if(circleInfo[j][0] <= upperBound) {
+                // update : count
                 count += 1;
             }
+            // break : if i-th circle can not intersect j-th circle
+            else {
+                break;
+            }
+        }
+
+        // return -1 : if count exceeds 10,000,000
+        if(count > 10000000) {
+            return -1;
         }
     }
 
     return count;
 }
-
 ```
 
 <br>
 
 # Result
-<img width="830" alt="image" src="https://user-images.githubusercontent.com/74173976/209611983-2fd8690b-e1d3-4812-9ad7-42b20695a464.png">
+<img width="842" alt="image" src="https://user-images.githubusercontent.com/74173976/209617523-aa3c4af2-77e5-4f8a-b6b2-b18f5600d998.png">
