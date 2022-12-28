@@ -46,19 +46,10 @@ function checkPair(lastElement, newElement) {
     if(lastElement == '(' && newElement == ')') {
         return true;
     }
-    else if(lastElement == ')' && newElement == '(') {
-        return true;
-    }
     else if(lastElement == '[' && newElement == ']') {
         return true;
     }
-    else if(lastElement == ']' && newElement == '[') {
-        return true;
-    }
     else if(lastElement == '{' && newElement == '}') {
-        return true;
-    }
-    else if(lastElement == '}' && newElement == '{') {
         return true;
     }
     else {
@@ -69,6 +60,11 @@ function checkPair(lastElement, newElement) {
 function solution(S) {
     // create : stack
     let stack = new Stack();
+
+    // return 1 : S is an empty string
+    if(S.length == 0) {
+        return 1;
+    }
 
     // initialize : stack
     stack.push(S[0]);
@@ -100,4 +96,4 @@ function solution(S) {
 <br>
 
 # Result
-<img width="865" alt="image" src="https://user-images.githubusercontent.com/74173976/209777119-292dfc82-9276-44dd-9357-f4b190aeed51.png">
+<img width="848" alt="image" src="https://user-images.githubusercontent.com/74173976/209777606-1fa1eab2-f8a9-410a-9a78-4020189d9041.png">
