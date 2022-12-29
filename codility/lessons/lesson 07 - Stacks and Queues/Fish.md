@@ -38,65 +38,55 @@
 
 ```javascript
 function solution(A, B) {
-    // A : sizes
-    // B : directions
-    
-    // initialize : array about alive fishes
-    let fishAlive = new Array(A.length).fill(true);
+    // A : size
+    // B : direction
+
+    // declare : stack
+    let stack = [];
+
+    // initialize : number of alive fishes
+    let fishAlive = 0;
 
     for(let i=0;i<A.length;i++) {
-        // continue : i-th fish is dead
-        if(fishAlive[i] == false) {
-            continue;
+        // if i-th fish is going downstream
+        if(B[i] == 1) {
+            stack[stack.length] = i;
         }
-        // i-th fish is alive
         else {
-            // initialize : direction of i-th fish
-            let direction = B[i] == 0 ? -1 : 1;
+            if(stack.length) {
+                for(let j=stack.length - 1;j>=0;j--) {
+                    // if i-th fish is bigger
+                    if(A[i] > A[j]) {
+                        stack.pop();
+                    }
+                    // if fish in the stack is bigger
+                    else {
+                        break;
+                    }
+                }
 
-            // initialize : next position of i-th fish
-            let nextPos = i + direction
-            
-            while(B[nextPos] != B[i]) {
-                // break : fish is reached at the end of the stream
-                if(nextPos < 0 || nextPos >= A.length) {
-                    break;
+                // if no fish in the stack
+                if(stack.length == 0) {
+                    // update : number of alive fishes
+                    fishAlive += 1;
                 }
-                
-                // i-th fish is bigger
-                if(A[i] > A[nextPos]) {
-                    // update next position's fish
-                    fishAlive[nextPos] = false;
-
-                    // update : next position
-                    nextPos = nextPos + direction;
-                }
-                // next fish if bigger
-                else {
-                    // update : i-th fish & break
-                    fishAlive[i] = false;
-                    break;
-                }
+            }
+            // if no fish is going downstream
+            else {
+                // update : number of alive fishes
+                fishAlive += 1;
             }
         }
     }
 
-    // initialize : the variable that will be returned
-    let count = 0;
+    // update : add number of fishes that are going downstream
+    fishAlive += stack.length;
 
-    for(let i=0;i<fishAlive.length;i++) {
-        // if i-th fish is alive
-        if(fishAlive[i]) {
-            // update : count
-            count += 1;
-        }
-    }
-
-    return count;
+    return fishAlive;
 }
 ```
 
 <br>
 
 # Result
-<img width="854" alt="image" src="https://user-images.githubusercontent.com/74173976/209912621-bf3a9e85-939b-40ec-9da1-7f3f90c12757.png">
+<img width="855" alt="image" src="https://user-images.githubusercontent.com/74173976/209915308-9f2fb6d7-dfe2-4509-8395-0bc06f2c2f2f.png">
