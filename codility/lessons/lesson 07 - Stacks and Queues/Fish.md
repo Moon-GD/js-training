@@ -54,9 +54,9 @@ function solution(A, B) {
         }
         else {
             if(stack.length) {
-                for(let j=stack.length - 1;j>=0;j--) {
+                for(let j=stack.length - 1;j >= 0;j--) {
                     // if i-th fish is bigger
-                    if(A[i] > A[j]) {
+                    if(A[i] > A[stack[j]]) {
                         stack.pop();
                     }
                     // if fish in the stack is bigger
@@ -89,4 +89,4 @@ function solution(A, B) {
 <br>
 
 # Result
-<img width="855" alt="image" src="https://user-images.githubusercontent.com/74173976/209915308-9f2fb6d7-dfe2-4509-8395-0bc06f2c2f2f.png">
+<img width="842" alt="image" src="https://user-images.githubusercontent.com/74173976/209915600-3d7e5926-f4e8-444b-9709-9e860d723980.png">
