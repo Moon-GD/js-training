@@ -40,7 +40,7 @@
 function solution(A, B) {
     // A : sizes
     // B : directions
-
+    
     // initialize : array about alive fishes
     let fishAlive = new Array(A.length).fill(true);
 
@@ -51,37 +51,32 @@ function solution(A, B) {
         }
         // i-th fish is alive
         else {
-            // initialize : current position & direction of i-th fish
-            let curPos = i;
+            // initialize : direction of i-th fish
             let direction = B[i] == 0 ? -1 : 1;
 
-            while(true) {
-                // initialize : next position
-                let nextPos = curPos + direction;
-
+            // initialize : next position of i-th fish
+            let nextPos = i + direction
+            
+            while(B[nextPos] != B[i]) {
                 // break : fish is reached at the end of the stream
                 if(nextPos < 0 || nextPos >= A.length) {
                     break;
                 }
-                else {
-                    // break : no fish is meeted
-                    if(B[i] == B[nextPos]) {
-                        break;
-                    }
-                    else {
-                        if(A[i] > A[nextPos]) {
-                            fishAlive[nextPos] = false;
-                        }
-                        // break : i-th fish is eaten
-                        else {
-                            fishAlive[i] = false;
-                            break;
-                        }
-                    }
-                }
+                
+                // i-th fish is bigger
+                if(A[i] > A[nextPos]) {
+                    // update next position's fish
+                    fishAlive[nextPos] = false;
 
-                // update : current position
-                curPos = nextPos;
+                    // update : next position
+                    nextPos = nextPos + direction;
+                }
+                // next fish if bigger
+                else {
+                    // update : i-th fish & break
+                    fishAlive[i] = false;
+                    break;
+                }
             }
         }
     }
