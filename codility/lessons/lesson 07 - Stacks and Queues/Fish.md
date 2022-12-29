@@ -37,9 +37,71 @@
 # My Code
 
 ```javascript
+function solution(A, B) {
+    // A : sizes
+    // B : directions
 
+    // initialize : array about alive fishes
+    let fishAlive = new Array(A.length).fill(true);
+
+    for(let i=0;i<A.length;i++) {
+        // continue : i-th fish is dead
+        if(fishAlive[i] == false) {
+            continue;
+        }
+        // i-th fish is alive
+        else {
+            // initialize : current position & direction of i-th fish
+            let curPos = i;
+            let direction = B[i] == 0 ? -1 : 1;
+
+            while(true) {
+                // initialize : next position
+                let nextPos = curPos + direction;
+
+                // break : fish is reached at the end of the stream
+                if(nextPos < 0 || nextPos >= A.length) {
+                    break;
+                }
+                else {
+                    // break : no fish is meeted
+                    if(B[i] == B[nextPos]) {
+                        break;
+                    }
+                    else {
+                        if(A[i] > A[nextPos]) {
+                            fishAlive[nextPos] = false;
+                        }
+                        // break : i-th fish is eaten
+                        else {
+                            fishAlive[i] = false;
+                            break;
+                        }
+                    }
+                }
+
+                // update : current position
+                curPos = nextPos;
+            }
+        }
+    }
+
+    // initialize : the variable that will be returned
+    let count = 0;
+
+    for(let i=0;i<fishAlive.length;i++) {
+        // if i-th fish is alive
+        if(fishAlive[i]) {
+            // update : count
+            count += 1;
+        }
+    }
+
+    return count;
+}
 ```
 
 <br>
 
 # Result
+<img width="854" alt="image" src="https://user-images.githubusercontent.com/74173976/209912621-bf3a9e85-939b-40ec-9da1-7f3f90c12757.png">
